@@ -14,8 +14,8 @@ def index(request):
     Show up the Google maps form here
     """
     output = []
-    print POST['points']
-    
+    print request.POST['points']
+
     try:
         points = request.POST['points']
     except Exception as e:
