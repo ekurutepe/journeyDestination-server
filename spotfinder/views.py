@@ -16,8 +16,8 @@ def index(request):
     output = []
     try:
         points = request.POST['points']
-    except e:
-        return HttpResponse(str(e))
+    except:
+        # return HttpResponse(str(e))
         output.append("Be careful. We are working with test values!<br>\n")
         points = '["52.706347,10.442505","52.513714,13.353676"]'
     try:
