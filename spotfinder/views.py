@@ -3,6 +3,8 @@ from journeyDestinationDjango.settings import FOURSQ_CLIENT_ID, FOURSQ_CLIENT_SE
 #from django.core import serializers
 from django.utils import simplejson
 import foursquare
+import threading
+import Queue
 
 # Create your views here.
 def index(request):
@@ -12,8 +14,8 @@ def index(request):
     output = []
     try:
         points = request.POST['points']
-    except:
-        #return HttpResponse("Dont call me without points")
+    except e:
+        return HttpResponse(str(e))
         output.append("Be careful. We are working with test values!<br>\n")
         points = '["52.706347,10.442505","52.513714,13.353676"]'
     try:
@@ -28,12 +30,19 @@ def index(request):
     #more infos here: https://developer.foursquare.com/docs/venues/explore
     defaultParams = {'radius': 10000.0, 'section': 'topPicks', 'limit': 1000, 'venuePhotos': 0}
     venues = []
+
+    #add to multi threading queue
+    queue = Queue.Queue()
+    for i in range(1): #4 async calls..
+        t = AsyncCall(queue, venues, client)
+        t.setDaemon(True)
+        t.start()
+
     for point in points:
         defaultParams['ll'] = point
-        venuesJson = client.venues.explore(params=defaultParams)
-        venue = getMostInterestingPoint(venuesJson, 2)
-        if venue:
-            venues.append(venue)
+        queue.put(defaultParams)
+
+    queue.join()
 
     return HttpResponse(simplejson.dumps(venues), content_type="application/json")
 
@@ -51,3 +60,20 @@ def getMostInterestingPoint(venuesJson, minVal):
             if not highestVenue or highestVenue[u'venue'][u'stats'][u'checkinsCount'] < checkIns:
                 highestVenue = venue
     return highestVenue
+
+class AsyncCall(threading.Thread):
+    """Threaded Url Grab"""
+    def __init__(self, queue, returnArray, client):
+        threading.Thread.__init__(self)
+        self.queue = queue
+        self.client = client
+        self.returnArray = returnArray
+    def run(self):
+        while True:
+            p = self.queue.get()
+
+            venuesJson = self.client.venues.explore(params=p)
+            venue = getMostInterestingPoint(venuesJson, 2)
+            if venue:
+                self.returnArray.append(venue)
+            self.queue.task_done()
