@@ -3,8 +3,13 @@
     {% block content %}
     <p> Hi {{ name }}, you've successfully logged in! </p>
  	<div>
-    <b>Start: </b>
-    <select id="start" onchange="calcRoute();">
+ 		<form>
+ 			<b>Start: </b><input id="start" type="text" label="Start">
+ 			<b>End: </b><input id="end" type="text" label="Finish">
+ 			<input type="submit" value="Submit" onclick="calcRoute();">
+ 		</form>
+    
+    <!-- <select id="start" onchange="calcRoute();">
       <option value="chicago, il">Chicago</option>
       <option value="st louis, mo">St Louis</option>
       <option value="joplin, mo">Joplin, MO</option>
@@ -40,7 +45,7 @@
       <option value="berlin, germany">Berlin</option>
       <option value="munich, germany">Munich</option>
       <option value="Ulaanbator, Mongolia">Mongolia</option>
-    </select>
+    </select> -->
     </div>
     <div id="map_canvas"></div>
     <div id="venues_list"></div>
