@@ -35,7 +35,8 @@ def index(request):
 
     #add to multi threading queue
     queue = Queue.Queue()
-    for i in range(1): #4 async calls..
+    #dont p
+    for i in range(1): #more than 1 will give blocks from foursquare
         t = AsyncCall(queue, venues, client)
         t.setDaemon(True)
         t.start()
