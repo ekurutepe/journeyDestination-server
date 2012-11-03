@@ -26,12 +26,12 @@ urlpatterns = patterns('',
     # main page redirects to start or login
     url(r'^$', 'journeyDestinationDjango.foursq_auth.views.main', name='main'),
     # receive OAuth token from 4sq
-    url(r'^callback/$', 'journeyDestinationDjango.foursq_auth.views.callback', name='oauth_return'),
+    url(r'^foursq_auth/callback/$', 'journeyDestinationDjango.foursq_auth.views.callback', name='oauth_return'),
     # # logout from the app
-    url(r'^logout/$', 'journeyDestinationDjango.foursq_auth.views.unauth', name='oauth_unauth'),
+    url(r'^foursq_auth/logout/$', 'journeyDestinationDjango.foursq_auth.views.unauth', name='oauth_unauth'),
     # # authenticate with 4sq using OAuth
-    url(r'^auth/$', 'journeyDestinationDjango.foursq_auth.views.auth', name='oauth_auth'),
+    url(r'^foursq_auth/auth/$', 'journeyDestinationDjango.foursq_auth.views.auth', name='oauth_auth'),
     # # main page once logged in
-    url( r'^done/$', 'journeyDestinationDjango.foursq_auth.views.done', name='oauth_done' ),
+    url( r'^foursq_auth/done/$', 'journeyDestinationDjango.foursq_auth.views.done', name='oauth_done' ),
 )
 
