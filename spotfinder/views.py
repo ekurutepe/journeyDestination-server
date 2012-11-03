@@ -13,8 +13,6 @@ def index(request):
     """
     Show up the Google maps form here
     """
-    
-
     try:
         points = request.POST['points']
     except:
@@ -34,13 +32,16 @@ def index(request):
     #more infos here: https://developer.foursquare.com/docs/venues/explore
     defaultParams = {'radius': 10000.0, 'section': 'topPicks', 'limit': 1000, 'venuePhotos': 0}
     venues = []
+    vids = []
 
     for point in points:
         defaultParams['ll'] = point
         venuesJson = client.venues.explore(params=defaultParams)
         venue = getMostInterestingPoint(venuesJson, 2)
-        if venue:
+        vid = venue[u'venue']['id']
+        if venue and vid not in vids:
             venues.append(venue)
+            vids.append(vid)
 
     return HttpResponse(simplejson.dumps(venues), content_type="application/json")
 
