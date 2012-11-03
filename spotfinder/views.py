@@ -15,8 +15,11 @@ def index(request):
     """
     try:
         points = request.POST['points']
-    except:
-        points = '["52.706347,10.442505","52.513714,13.353676"]'
+        distanceLimit = request.POST['distanceLimit']
+    except Exception as e:
+        #points = '["52.706347,10.442505","52.513714,13.353676"]'
+        print "There is an error in getting the post arguments: " + str(e)
+        return HttpResponse("Wrong POST arguments")
     finally:
         print points
 
@@ -30,7 +33,7 @@ def index(request):
 
     #TWEAK THIS later!
     #more infos here: https://developer.foursquare.com/docs/venues/explore
-    defaultParams = {'radius': 10000.0, 'section': 'topPicks', 'limit': 1000, 'venuePhotos': 0}
+    defaultParams = {'radius': float(distanceLimit), 'section': 'topPicks', 'limit': 100, 'venuePhotos': 0}
     venues = []
     vids = []
 
