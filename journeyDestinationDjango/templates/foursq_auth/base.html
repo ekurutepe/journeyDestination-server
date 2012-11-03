@@ -4,9 +4,32 @@
 <html> 
     <head>
         <title>{% block title %}Foursquare OAuth Example{% endblock %}</title>
+
+     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" id="jquery"></script>
+        <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9CAKKUj3b9Gc_MkA1VQ39vfAC7Prksww&sensor=FALSE">
+    </script>
+        
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+      }
+    </script>
 </head>
 </head>
-    <body>
+    <body onload="initialize()">
     <!-- any pages that extend base.html will have their content inserted in this block -->
     {% block content %}
     {% endblock %}
