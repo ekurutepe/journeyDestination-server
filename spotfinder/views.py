@@ -38,9 +38,9 @@ def index(request):
     for point in points:
         defaultParams['ll'] = point
         venuesJson = self.client.venues.explore(params=defaultParams)
-            venue = getMostInterestingPoint(venuesJson, 2)
-            if venue:
-                venues.append(venue)
+        venue = getMostInterestingPoint(venuesJson, 2)
+        if venue:
+            venues.append(venue)
 
     return HttpResponse(simplejson.dumps(venues), content_type="application/json")
 
