@@ -33,6 +33,16 @@
         directionsDisplay.setMap(map);
       }
 
+      
+
+      function renderMap(jsonVenues) {
+
+      }
+
+      function renderTable(jsonVenues) {
+
+      }
+
       function calcRoute() {
         var start = document.getElementById('start').value;
         var end = document.getElementById('end').value;
@@ -69,6 +79,19 @@
             }
 
             console.log(originalLen + ' original points and ' + filteredPoints.length + 'filtered points');
+
+            //TODO: AJAX Req to spotfinder
+            $.ajax({
+				  type: 'POST',
+				  url: 'searchVenues',
+				  data: { points: filteredPoints },
+				  success: function (data) {
+				  		renderTable(data);
+				  		renderMap(data);
+      				},
+				  dataType: 'json'
+				});
+
           }
         });
       }
