@@ -24,7 +24,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     # main page redirects to start or login
-    url(r'^$', 'journeyDestinationDjango.foursq_auth.main', name='main'),
+    url(r'^$', 'journeyDestinationDjango.foursq_auth.views.main', name='main'),
     # receive OAuth token from 4sq
     # url(r'^callback/$', view=callback, name='oauth_return'),
     # # logout from the app
