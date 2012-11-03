@@ -36,12 +36,21 @@
       
 
       function renderMap(jsonVenues) {
+      	for (var i = 0; i < jsonVenues.length ; i++) {
+      		var venueLoc = jsonVenues[i]['venue']['location']
+      		var myLatlng = new google.maps.LatLng(venueLoc['lat'],venueLoc['lng']);
+      		var marker = new google.maps.Marker({
+						      position: myLatlng,
+						      map: map,
+						      title:jsonVenues[i]['venue']['name']
+						  });
+      		
+      	}
 
       }
 
       function renderTable(jsonVenues) {
       	for (var i = 0; i < jsonVenues.length ; i++) {
-      		jsonVenues[i]
       		$("#venues_list").append("<div>"+jsonVenues[i]['venue']['name']+"</div>");
       	}
       	
