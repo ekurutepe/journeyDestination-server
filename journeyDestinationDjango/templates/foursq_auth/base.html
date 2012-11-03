@@ -105,7 +105,7 @@
             $.ajax({
 				  type: 'POST',
 				  url: '../searchVenues',
-				  data: 'points='+ JSON.stringify(coords),
+				  data: 'points='+ JSON.stringify(coords)+'&distanceLimit='+distanceLimit,
 				  success: function (data) {
 					  	console.log(data);
 				  		renderTable(data);
