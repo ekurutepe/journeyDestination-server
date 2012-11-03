@@ -12,7 +12,7 @@ CLIENT_SECRET = 'AFFT3UWUZTJXRT4AOOKHCAPGPOUJFYXRW04NMS01L4PZDZCY'
 
 request_token_url = 'https://foursquare.com/oauth2/authenticate'
 access_token_url = 'https://foursquare.com/oauth2/access_token'
-redirect_url = 'http://127.0.0.1:8000/foursq_auth/callback'
+redirect_url = 'http://boiling-spire-1081.herokuapp.com/foursq_auth/callback'
 
 def main( request ):
     return render_to_response( 'foursq_auth/login.html' )
