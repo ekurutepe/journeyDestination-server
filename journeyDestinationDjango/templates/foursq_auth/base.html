@@ -36,12 +36,21 @@
       
 
       function renderMap(jsonVenues) {
+      	for (var i = 0; i < jsonVenues.length ; i++) {
+      		var venueLoc = jsonVenues[i]['venue']['location']
+      		var myLatlng = new google.maps.LatLng(venueLoc['lat'],venueLoc['lng']);
+      		var marker = new google.maps.Marker({
+						      position: myLatlng,
+						      map: map,
+						      title:jsonVenues[i]['venue']['name']
+						  });
+      		
+      	}
 
       }
 
       function renderTable(jsonVenues) {
       	for (var i = 0; i < jsonVenues.length ; i++) {
-      		jsonVenues[i]
       		$("#venues_list").append("<div>"+jsonVenues[i]['venue']['name']+"</div>");
       	}
       	
@@ -58,12 +67,13 @@
         directionsService.route(request, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
-
+            console.log(response.routes[0])
             var routePoints = response.routes[0].overview_path.splice(0);
             var originalLen = routePoints.length;
             var filteredPoints = new Array();
             filteredPoints.push(routePoints.shift());
             
+            var distanceLimit = response.routes[0].legs[0].distance.value/10;
 
             while(routePoints.length)
             {
@@ -77,7 +87,7 @@
 
             	// console.log(distance);
 
-            	if (distance > 10000) {
+            	if (distance > distanceLimit) {
             		filteredPoints.push(lastPoint);
             	};
             }
@@ -95,7 +105,7 @@
             $.ajax({
 				  type: 'POST',
 				  url: '../searchVenues',
-				  data: 'points='+ JSON.stringify(coords),
+				  data: 'points='+ JSON.stringify(coords)+'&distanceLimit='+distanceLimit,
 				  success: function (data) {
 					  	console.log(data);
 				  		renderTable(data);
