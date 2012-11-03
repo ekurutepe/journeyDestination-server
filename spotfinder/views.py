@@ -5,6 +5,7 @@ from django.utils import simplejson
 import foursquare
 
 # Create your views here.
+@csrf_exempt
 def index(request):
     """
     Show up the Google maps form here
