@@ -18,13 +18,30 @@
         
     <script type="text/javascript">
       function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var chicago = new google.maps.LatLng(41.850033, -87.6500523);
         var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          zoom:7,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          center: chicago
+        }
+        map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+        directionsDisplay.setMap(map);
+      }
+
+      function calcRoute() {
+        var start = document.getElementById('start').value;
+        var end = document.getElementById('end').value;
+        var request = {
+            origin:start,
+            destination:end,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
         };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            mapOptions);
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          }
+        });
       }
     </script>
 </head>
