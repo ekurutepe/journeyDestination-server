@@ -20,7 +20,7 @@ def index(request):
         points = request.POST['points']
     except:
         # return HttpResponse(str(e))
-        output.append("Be careful. We are working with test values!<br>\n")
+        # output.append("Be careful. We are working with test values!<br>\n")
         points = '["52.706347,10.442505","52.513714,13.353676"]'
     try:
         client = foursquare.Foursquare(access_token=request.POST['apiToken'])
@@ -35,19 +35,12 @@ def index(request):
     defaultParams = {'radius': 10000.0, 'section': 'topPicks', 'limit': 1000, 'venuePhotos': 0}
     venues = []
 
-    #add to multi threading queue
-    queue = Queue.Queue()
-    #dont p
-    for i in range(1): #more than 1 will give blocks from foursquare
-        t = AsyncCall(queue, venues, client)
-        t.setDaemon(True)
-        t.start()
-
     for point in points:
         defaultParams['ll'] = point
-        queue.put(defaultParams)
-
-    queue.join()
+        venuesJson = self.client.venues.explore(params=defaultParams)
+            venue = getMostInterestingPoint(venuesJson, 2)
+            if venue:
+                venues.append(venue)
 
     return HttpResponse(simplejson.dumps(venues), content_type="application/json")
 
