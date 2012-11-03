@@ -7,8 +7,8 @@ from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 
-CLIENT_ID = 'YOUR_CLIENT_ID'
-CLIENT_SECRET = 'YOUR_CLIENT_SECRET'
+CLIENT_ID = 'AYXVPVSZT5XAKT1FBXDL1OWFQCOED00ZXB0CYWJYZX5GWSN1'
+CLIENT_SECRET = 'AFFT3UWUZTJXRT4AOOKHCAPGPOUJFYXRW04NMS01L4PZDZCY'
 
 request_token_url = 'https://foursquare.com/oauth2/authenticate'
 access_token_url = 'https://foursquare.com/oauth2/access_token'
