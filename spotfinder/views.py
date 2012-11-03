@@ -35,9 +35,9 @@ def index(request):
         venuesJson = client.venues.explore(params=defaultParams)
         venue = getMostInterestingPoint(venuesJson, 2)
         if venue:
-            venues.append(str(venue))
+            venues.append(venue)
 
-    return HttpResponse("<br><br><br>".join(venues))
+    return HttpResponse(simplejson.dumps(venues), content_type="application/json")
 
 
 #api call:
