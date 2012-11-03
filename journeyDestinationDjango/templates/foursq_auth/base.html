@@ -86,6 +86,7 @@
 				  url: 'searchVenues',
 				  data: { points: filteredPoints },
 				  success: function (data) {
+					  	console.log(data);
 				  		renderTable(data);
 				  		renderMap(data);
       				},
