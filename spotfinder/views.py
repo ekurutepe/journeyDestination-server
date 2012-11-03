@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from journeyDestinationDjango.settings import FOURSQ_CLIENT_ID, FOURSQ_CLIENT_SECRET
 #from django.core import serializers
 from django.utils import simplejson
+from django.views.decorators.csrf import csrf_exempt
 import foursquare
 
 # Create your views here.
