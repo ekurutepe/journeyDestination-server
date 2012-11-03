@@ -14,8 +14,11 @@ def index(request):
     except:
         client = foursquare.Foursquare(client_id='YOUR_CLIENT_ID', client_secret='YOUR_CLIENT_SECRET')
 
+    #Parse the points
+
     for point in points:
-        pass
+        client.venues.explore("{},{}".format
+
     return HttpResponse("Insert Google Maps Source and Destination here")
 
 
