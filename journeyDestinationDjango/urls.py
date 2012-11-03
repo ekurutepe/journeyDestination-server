@@ -16,7 +16,5 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^searchVenues', include('spotfinder.urls')),
 
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT }),
-    (r'^foursq_auth/', include('Dj4sq.foursq_auth.urls')),
 
 )
