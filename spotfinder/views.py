@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+import journeyDestinationDjango.settings
 # Create your views here.
 def index(request):
     """
@@ -8,6 +9,10 @@ def index(request):
         points = request.POST['points']
     except:
         return HttpResponse("Dont call me without points")
+    try:
+        client = foursquare.Foursquare(access_token=request.POST['apiToken'])
+    except:
+        client = foursquare.Foursquare(client_id='YOUR_CLIENT_ID', client_secret='YOUR_CLIENT_SECRET')
 
     for point in points:
         pass
