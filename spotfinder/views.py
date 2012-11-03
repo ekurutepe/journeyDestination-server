@@ -25,7 +25,7 @@ def index(request):
         points = '["52.706347,10.442505","52.513714,13.353676"]'
     finally:
         print points
-        
+
     try:
         client = foursquare.Foursquare(access_token=request.POST['apiToken'])
     except:
@@ -41,7 +41,7 @@ def index(request):
 
     for point in points:
         defaultParams['ll'] = point
-        venuesJson = self.client.venues.explore(params=defaultParams)
+        venuesJson = client.venues.explore(params=defaultParams)
         venue = getMostInterestingPoint(venuesJson, 2)
         if venue:
             venues.append(venue)
