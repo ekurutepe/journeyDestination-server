@@ -59,14 +59,14 @@
 
             	var distance = google.maps.geometry.spherical.computeDistanceBetween (lastPoint, lastFilteredPoint);
 
-            	console.log(distance);
+            	// console.log(distance);
 
             	if (distance > 10000) {
             		filteredPoints.push(lastPoint);
             	};
             }
 
-            console.log(filteredPoints);
+            console.log(routePoints.length + ' original points and ' + filteredPoints.length + 'filtered points');
           }
         });
       }
