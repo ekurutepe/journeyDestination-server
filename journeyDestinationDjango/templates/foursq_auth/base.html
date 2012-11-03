@@ -80,12 +80,20 @@
 
             console.log(originalLen + ' original points and ' + filteredPoints.length + 'filtered points');
 
+			coords = [];
+
+			for(var i=0;i<filteredPoints.length;i++){
+			    coords.push(
+			        filteredPoints[i].lat()+ ','+filteredPoints[i].lng()
+			    );
+			}
             //TODO: AJAX Req to spotfinder
             $.ajax({
 				  type: 'POST',
-				  url: 'searchVenues',
-				  data: { points: filteredPoints },
+				  url: '../searchVenues',
+				  data: { points: coords },
 				  success: function (data) {
+					  	console.log(data);
 				  		renderTable(data);
 				  		renderMap(data);
       				},
