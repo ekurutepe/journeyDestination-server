@@ -27,8 +27,6 @@ def index(request):
     #TWEAK THIS later!
     #more infos here: https://developer.foursquare.com/docs/venues/explore
     defaultParams = {'radius': 10000.0, 'section': 'topPicks', 'limit': 1000, 'venuePhotos': 0}
-    import pdb
-    pdb.set_trace()
     venues = []
     for point in points:
         defaultParams['ll'] = point
