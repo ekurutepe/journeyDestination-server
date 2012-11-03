@@ -17,6 +17,6 @@ urlpatterns = patterns('',
 
 
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT }),
-    (r'^foursq_auth/', include('Dj4sq.foursq_auth.urls')),
+    (r'^foursq_auth/', include('journeyDestinationDjango.foursq_auth.urls')),
 
 )
