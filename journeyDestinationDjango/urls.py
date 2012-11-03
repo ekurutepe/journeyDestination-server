@@ -16,10 +16,14 @@ from django.conf.urls import patterns, include, url
 #     # url(r'^admin/', include(admin.site.urls)),
 
 
-#     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT }),
-#     (r'^foursq_auth/', include('journeyDestinationDjango.foursq_auth.urls')),
+
+    # Uncomment the next line to enable the admin:
+    # url(r'^admin/', include(admin.site.urls)),
+    
+
 
 # )
+
 
 
 urlpatterns = patterns('',
@@ -33,5 +37,8 @@ urlpatterns = patterns('',
     url(r'^auth/$', 'journeyDestinationDjango.foursq_auth.views.auth', name='oauth_auth'),
     # # main page once logged in
     url( r'^done/$', 'journeyDestinationDjango.foursq_auth.views.done', name='oauth_done' ),
+
+    url(r'^searchVenues', include('spotfinder.urls')),
+
 )
 
