@@ -22,7 +22,7 @@ from django.conf.urls import patterns, include, url
 # )
 
 
-urlpatterns = patterns('foursq_auth.views',
+urlpatterns = patterns('',
     # main page redirects to start or login
     url(r'^$', 'journeyDestinationDjango.foursq_auth.main', name='main'),
     # receive OAuth token from 4sq
