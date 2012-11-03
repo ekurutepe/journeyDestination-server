@@ -3,10 +3,10 @@
     {% block content %}
     <p> Hi {{ name }}, you've successfully logged in! </p>
  	<div>
- 		<form>
+ 		<form action="javascript:calcRoute();">
  			<b>Start: </b><input id="start" type="text" label="Start">
  			<b>End: </b><input id="end" type="text" label="Finish">
- 			<input type="submit" value="Submit" onclick="calcRoute();">
+ 			<input type="submit" value="Submit">
  		</form>
     
     <!-- <select id="start" onchange="calcRoute();">
