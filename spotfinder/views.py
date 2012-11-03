@@ -14,14 +14,18 @@ def index(request):
     Show up the Google maps form here
     """
     output = []
-    print request.POST['points']
+    
 
     try:
         points = request.POST['points']
+
     except:
         # return HttpResponse(str(e))
         # output.append("Be careful. We are working with test values!<br>\n")
         points = '["52.706347,10.442505","52.513714,13.353676"]'
+    finally:
+        print points
+        
     try:
         client = foursquare.Foursquare(access_token=request.POST['apiToken'])
     except:
