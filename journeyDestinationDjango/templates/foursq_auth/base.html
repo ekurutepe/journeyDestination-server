@@ -44,6 +44,29 @@
         directionsService.route(request, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+            var routePoints = response.routes[0].overview_path.splice(0);
+            var filteredPoints = new Array();
+            filteredPoints.push(routePoints.shift());
+            
+
+            while(routePoints.length())
+            {
+            	var lastPoint = routePoints.shift();
+
+            	var filteredLength = filteredPoints.length();
+
+            	var lastFilteredPoint = filteredPoints[filteredLength-1];
+
+            	var distance = google.maps.geometry.spherical.computeDistanceBetween (lastPoint, lastFilteredPoint);
+
+            	console.log(distance);
+
+            	if (distance > 10000) {
+            		filteredPoints.push(lastPoint);
+            	};
+            }
+
+            console.log(filteredPoints);
           }
         });
       }
