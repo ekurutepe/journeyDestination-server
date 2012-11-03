@@ -44,7 +44,9 @@
         directionsService.route(request, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+
             var routePoints = response.routes[0].overview_path.splice(0);
+            var originalLen = routePoints.length;
             var filteredPoints = new Array();
             filteredPoints.push(routePoints.shift());
             
@@ -66,7 +68,7 @@
             	};
             }
 
-            console.log(routePoints.length + ' original points and ' + filteredPoints.length + 'filtered points');
+            console.log(originalLen + ' original points and ' + filteredPoints.length + 'filtered points');
           }
         });
       }
