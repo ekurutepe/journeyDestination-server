@@ -38,7 +38,6 @@
       
       function renderMap(jsonVenues) {
       	
-
       	for (var i = 0; i < jsonVenues.length ; i++) {
       		var venueLoc = jsonVenues[i]['venue']['location']
       		var myLatlng = new google.maps.LatLng(venueLoc['lat'],venueLoc['lng']);

@@ -24,7 +24,7 @@ def index(request):
         print points
 
     try:
-        client = foursquare.Foursquare(access_token=request.POST['apiToken'])
+        client = foursquare.Foursquare(access_token=request.session['access_token'])
     except:
         client = foursquare.Foursquare(client_id=FOURSQ_CLIENT_ID, client_secret=FOURSQ_CLIENT_SECRET)
 
