@@ -56,7 +56,7 @@
 
       function renderTable(jsonVenues) {
       	for (var i = 0; i < jsonVenues.length ; i++) {
-      		$("#venues_list").append("<div>"+jsonVenues[i]['venue']['name']+"</div>");
+      		$("#venues_list").append("<tr><td>"+jsonVenues[i]['venue']['name']+"</td></tr>");
       	}
       	
       }

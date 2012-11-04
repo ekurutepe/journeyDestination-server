@@ -4,13 +4,13 @@
     <p> Hi {{ name }}, you've successfully logged in! </p>
  	<div>
  		<form action="javascript:calcRoute();">
- 			<b>Start: </b><input id="start" type="text" label="Start">
- 			<b>End: </b><input id="end" type="text" label="Finish">
- 			<input type="submit" value="Submit">
+ 			<label>Start: </label><input id="start" type="text" label="Start">
+ 			<label>End: </label><input id="end" type="text" label="Finish">
+ 			<input type="submit" value="Submit" class="btn">
  		</form>
     
     </div>
     <div id="map_canvas"></div>
-    <div id="venues_list"></div>
+    <table id="venues_list" class="table table-hover"></table>
     <p><a href="../logout/">Logout</a></p>
     {% endblock %}
