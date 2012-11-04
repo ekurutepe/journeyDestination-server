@@ -38,9 +38,7 @@
       
       function renderMap(jsonVenues) {
       	
-        for (var i = 0; i < markersArray.length; i++ ) {
-            markersArray[i].setMap(null);
-        }
+
       	for (var i = 0; i < jsonVenues.length ; i++) {
       		var venueLoc = jsonVenues[i]['venue']['location']
       		var myLatlng = new google.maps.LatLng(venueLoc['lat'],venueLoc['lng']);
@@ -64,6 +62,9 @@
 
       function calcRoute() {
       	$("#venues_list").children().remove();
+        for (var i = 0; i < markersArray.length; i++ ) {
+            markersArray[i].setMap(null);
+        }
         var start = document.getElementById('start').value;
         var end = document.getElementById('end').value;
         var request = {
