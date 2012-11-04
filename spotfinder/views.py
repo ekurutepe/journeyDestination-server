@@ -33,7 +33,7 @@ def index(request):
 
     #TWEAK THIS later!
     #more infos here: https://developer.foursquare.com/docs/venues/explore
-    defaultParams = {'radius': float(min(distanceLimit, 100000)), 'section': 'topPicks', 'limit': 100, 'venuePhotos': 0}
+    defaultParams = {'radius': float(min(distanceLimit, 100000)), 'section': 'topPicks', 'limit': 10, 'venuePhotos': 0}
     venues = []
     vids = []
 
