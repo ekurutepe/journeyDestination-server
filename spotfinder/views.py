@@ -17,7 +17,7 @@ def index(request):
         points = request.POST['points']
         distanceLimit = request.POST['distanceLimit']
     except Exception as e:
-        #points = '["52.706347,10.442505","52.513714,13.353676"]'
+        points = '[]'
         print "There is an error in getting the post arguments: " + str(e)
         return HttpResponse("Wrong POST arguments")
     finally:
