@@ -1,6 +1,6 @@
 <!-- base.html is extended by all other web pages in the application. It contains all code that 
      should be on every page, such as the html header section -->
-
+<!DOCTYPE html>
 <html> 
     <head>
         <title>{% block title %}Foursquare OAuth Example{% endblock %}</title>
@@ -56,7 +56,7 @@
 
       function renderTable(jsonVenues) {
       	for (var i = 0; i < jsonVenues.length ; i++) {
-      		$("#venues_list").append("<tr><td>"+jsonVenues[i].venue.categories[0].prefix+"128.png"+"</td><td><a href=\"http://www.foursquare.com/v/venue/"+jsonVenues[i].venue.id+"\""> +jsonVenues[i].venue.name+"</a></td></tr>");
+      		$("#venues_rows").append("<tr><td>"+jsonVenues[i].venue.categories[0].prefix+"128.png"+"</td><td><a href=\"http://www.foursquare.com/v/venue/"+jsonVenues[i].venue.id+"\""> +jsonVenues[i].venue.name+"</a></td></tr>");
       	}
       	
       }
